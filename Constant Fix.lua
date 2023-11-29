@@ -9,9 +9,7 @@ function DefineGlobalConstants(sName, tbl)
 
 	rawset(_G, sName, tbl);
 
-	setmetatable(_G[sName], {
-		__newindex = function(self, k, v) end;
-	});
+	setmetatable(_G[sName], {__newindex = function(self, k, v) end;});
 
 	ALL_CONSTANT_TABLE_NAMES[#ALL_CONSTANT_TABLE_NAMES + 1] = sName;
 end
@@ -19,7 +17,7 @@ end
 setmetatable(_G, {
 	__index = function(self, k)
 		for _, tbl in pairs(rawget(_G, "ALL_CONSTANT_TABLE_NAMES")) do
-			local v = (rawget(_G, tbl) or {})[k];
+			local v = rawget(rawget(_G, tbl) or {}, k);
 
 			if v then
 				return v;
@@ -31,11 +29,11 @@ setmetatable(_G, {
 
 	__newindex = function(self, k, v)
 		for _, tbl in pairs(rawget(_G, "ALL_CONSTANT_TABLE_NAMES") or {}) do
-			local _v = (rawget(_G, tbl) or {})[k];
+			if rawget(rawget(_G, tbl) or {}, k) then
 
-			if _v then
-				error("Cannot override constant values!");
+				error(("Cannot override global constant %s!"):format(k));
 				return;
+
 			end
 		end
 		
