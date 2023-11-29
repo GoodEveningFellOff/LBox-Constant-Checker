@@ -29,6 +29,11 @@ setmetatable(_G, {
 
 	__newindex = function(self, k, v)
 		for _, tbl in pairs(rawget(_G, "ALL_CONSTANT_TABLE_NAMES") or {}) do
+			if tbl == k then
+				error(("Cannot override global table %s!"):format(k));
+				return;
+			end
+
 			if rawget(rawget(_G, tbl) or {}, k) then
 
 				error(("Cannot override global constant %s!"):format(k));
@@ -957,4 +962,3 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_KillEffect", {
 	TF_CUSTOM_BURNING_FLARE             = 8;
 	TF_CUSTOM_WRENCH_FIX                = 4;
 });
-
