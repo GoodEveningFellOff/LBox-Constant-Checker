@@ -16,29 +16,54 @@ end
 
 setmetatable(_G, {
 	__index = function(self, k)
-		for _, tbl in pairs(rawget(_G, "ALL_CONSTANT_TABLE_NAMES")) do
-			local v = rawget(rawget(_G, tbl) or {}, k);
+		local pACTN = rawget(_G, "ALL_CONSTANT_TABLE_NAMES");
 
-			if v then
-				return v;
-			end
+		if not pACTN or type(pACTN) ~= "table" then
+			return rawget(self, k);
 		end
 
-		return rawget(_G, k);
+		for i, sName in pairs(pACTN) do
+			-- Make sure this global constant table still exists due to our issue
+			local tbl = rawget(_G, sName);
+			if tbl and type(tbl) == "table" then
+				local v = rawget(tbl, k);
+
+				if v then
+					return v;
+				end
+			end
+		end
+		
+		return rawget(self, k);
 	end;
 
 	__newindex = function(self, k, v)
-		for _, tbl in pairs(rawget(_G, "ALL_CONSTANT_TABLE_NAMES") or {}) do
-			if tbl == k then
+		local pACTN = rawget(_G, "ALL_CONSTANT_TABLE_NAMES");
+
+		if not pACTN or type(pACTN) ~= "table" then
+			rawset(self, k, v);
+			return;
+		end
+
+		for i, sName in pairs(pACTN) do
+
+			-- This condition is NOT ever met unless we are overriding a global table in the same script
+			-- This means that we can override global constant tables making them invalid!!!
+			-- LOOK INTO THIS!!!
+			if sName == k then
 				error(("Cannot override global table %s!"):format(k));
 				return;
 			end
 
-			if rawget(rawget(_G, tbl) or {}, k) then
+			-- Make sure this global constant table still exists due to our issue above
+			local tbl = rawget(_G, sName);
+			if tbl and type(tbl) == "table" then
+				local _v = rawget(tbl, k);
 
-				error(("Cannot override global constant %s!"):format(k));
-				return;
-
+				if _v then
+					error(("Cannot override global constant %s!"):format(k));
+					return;
+				end
 			end
 		end
 		
