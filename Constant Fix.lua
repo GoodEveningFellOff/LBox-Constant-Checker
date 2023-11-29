@@ -3,7 +3,13 @@ ALL_CONSTANT_TABLE_NAMES = ALL_CONSTANT_TABLE_NAMES or {};
 function _DEFINE_GLOBAL_CONSTANT_TABLE(sName, tbl)
 	for _, v in pairs(ALL_CONSTANT_TABLE_NAMES) do
 		if v == sName then
-			return;
+
+			local oTbl = _G[v];
+			if oTbl and type(oTbl) == "table" then
+				if #oTbl >= #tbl then
+					return;
+				end
+			end
 		end
 	end
 
