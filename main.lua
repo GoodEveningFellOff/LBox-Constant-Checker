@@ -1,4 +1,4 @@
-local function CheckConstants(bIncludeUnknownTables, bLogInfo)
+local function CheckConstants(bIncludeUnknownTables, bLogInfo, bDontRedefine)
 	local LOG = bLogInfo and printc or function(...) end;
 
 	local aKnownConstantTables = {};
@@ -23,10 +23,17 @@ local function CheckConstants(bIncludeUnknownTables, bLogInfo)
 
 	-- Search the _G table for global constant tables using the fact that they are named with E_ as a prefix and have a type of table
 	for G_key, G_tbl in pairs(_G) do
-		if G_key:find("E_") == 1 and type(G_tbl) == "table" then
+		if tostring(G_key):find("E") == 1 and type(G_tbl) == "table" then
+			local bContinue = true;
 
 			
-			if aKnownConstantTables[G_key] ~= nil or bIncludeUnknownTables then
+			for k, v in pairs(G_tbl) do
+				if type(v) ~= "number" then
+					bContinue = false;
+				end
+			end
+			
+			if (aKnownConstantTables[G_key] ~= nil or bIncludeUnknownTables) and bContinue then
 				if aKnownConstantTables[G_key] ~= nil then
 					aKnownConstantTables[G_key] = true;
 
@@ -44,7 +51,10 @@ local function CheckConstants(bIncludeUnknownTables, bLogInfo)
 
 					if not _G[k] then
 						iMissing = iMissing + 1;	
-						_G[k] = v;
+
+						if not bDontRedefine then
+							_G[k] = v;
+						end
 					end
 				end
 				
