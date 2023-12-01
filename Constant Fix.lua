@@ -837,13 +837,13 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_FontFlag", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_MatchAbandonStatus", {
-	MATCHABANDON_SAFE      = 0;
+    MATCHABANDON_SAFE      = 0;
     MATCHABANDON_NOPENALTY = 1;
     MATCHABANDON_PENTALTY  = 2;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_FileAttribute", {
-	FILE_ATTRIBUTE_READONLY              = 0x1;
+    FILE_ATTRIBUTE_READONLY              = 0x1;
     FILE_ATTRIBUTE_HIDDEN                = 0x2;
     FILE_ATTRIBUTE_SYSTEM                = 0x4;
     FILE_ATTRIBUTE_DIRECTORY             = 0x10;
@@ -868,20 +868,20 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_FileAttribute", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_TeamNumber", {
-	TEAM_UNASSIGNED = 0;
+    TEAM_UNASSIGNED = 0;
     TEAM_SPECTATOR  = 1;
     TEAM_BLU        = 2;
     TEAM_RED        = 3;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_RuneType", {
-	RUNETYPE_TEMP_NONE = 0;
+    RUNETYPE_TEMP_NONE = 0;
     RUNETYPE_TEMP_CRIT = 1;
     RUNETYPE_TEMP_UBER = 2;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_ProjectileType", {
-	TF_PROJECTILE_NONE                 = 0;
+    TF_PROJECTILE_NONE                 = 0;
     TF_PROJECTILE_BULLET               = 1;
     TF_PROJECTILE_ROCKET               = 2;
     TF_PROJECTILE_PIPEBOMB             = 3;
@@ -913,7 +913,7 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_ProjectileType", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_MoveType", {
-	MOVETYPE_NONE       = 0;
+    MOVETYPE_NONE       = 0;
     MOVETYPE_ISOMETRIC  = 1;
     MOVETYPE_WALK       = 2;
     MOVETYPE_STEP       = 3;
@@ -928,7 +928,7 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_MoveType", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_Hitbox", {
-	HITBOX_HEAD       = 0;
+    HITBOX_HEAD       = 0;
     HITBOX_PELVIS     = 1;
     HITBOX_SPINE_0    = 2;
     HITBOX_SPINE_1    = 3;
@@ -949,7 +949,7 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_Hitbox", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_BoneMask", {
-	BONE_USED_BY_ANYTHING    = 0x0007FF00;
+    BONE_USED_BY_ANYTHING    = 0x0007FF00;
     BONE_USED_BY_HITBOX      = 0x00000100;
     BONE_USED_BY_ATTACHMENT  = 0x00000200;
     BONE_USED_BY_VERTEX_MASK = 0x0003FC00;
@@ -965,28 +965,28 @@ _DEFINE_GLOBAL_CONSTANT_TABLE("E_BoneMask", {
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("EGCResults", {
-	k_EGCResultOK             = 0;
-	k_EGCResultNoMessage      = 1;
-	k_EGCResultBufferTooSmall = 2;
-	k_EGCResultNotLoggedOn    = 3;
+    k_EGCResultOK             = 0;
+    k_EGCResultNoMessage      = 1;
+    k_EGCResultBufferTooSmall = 2;
+    k_EGCResultNotLoggedOn    = 3;
     k_EGCResultInvalidMessage = 4;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_GCResults", {
-	k_EGCResultOK             = 0;
-	k_EGCResultNoMessage      = 1;
-	k_EGCResultBufferTooSmall = 2;
-	k_EGCResultNotLoggedOn    = 3;
+    k_EGCResultOK             = 0;
+    k_EGCResultNoMessage      = 1;
+    k_EGCResultBufferTooSmall = 2;
+    k_EGCResultNotLoggedOn    = 3;
     k_EGCResultInvalidMessage = 4;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_ClearFlags", {
-	VIEW_CLEAR_COLOR        = 0x1;
-	VIEW_CLEAR_DEPTH        = 0x2;
-	VIEW_CLEAR_FULL_TARGET  = 0x4;
-	VIEW_NO_DRAW            = 0x8;
-	VIEW_CLEAR_OBEY_STENCIL = 0x10;
-	VIEW_CLEAR_STENCIL      = 0x20;
+    VIEW_CLEAR_COLOR        = 0x1;
+    VIEW_CLEAR_DEPTH        = 0x2;
+    VIEW_CLEAR_FULL_TARGET  = 0x4;
+    VIEW_NO_DRAW            = 0x8;
+    VIEW_CLEAR_OBEY_STENCIL = 0x10;
+    VIEW_CLEAR_STENCIL      = 0x20;
 });
 
 _DEFINE_GLOBAL_CONSTANT_TABLE("E_Flows", {
