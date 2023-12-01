@@ -1,4 +1,6 @@
-ALL_CONSTANT_TABLE_NAMES = ALL_CONSTANT_TABLE_NAMES or {};
+if type(ALL_CONSTANT_TABLE_NAMES) ~= "table" then
+    ALL_CONSTANT_TABLE_NAMES = {};
+end
 
 function _DEFINE_GLOBAL_CONSTANT_TABLE(sName, tbl)
 	for _, v in pairs(ALL_CONSTANT_TABLE_NAMES) do
